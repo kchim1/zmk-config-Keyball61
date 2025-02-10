@@ -4,6 +4,8 @@
 #define MOUSE   3
 #define SCROLL  4
 #define SNIPE   5
+#define SIGN_IN 6
+#define MAC     7
 
 #include <behaviors/mouse_keys.dtsi>
 #include <dt-bindings/zmk/mouse.h>
@@ -23,8 +25,8 @@
     quick-tap-ms = <150>;
 };
 
-/ {    
-   behaviors {
+/ {
+    behaviors {
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             label = "AS";
@@ -41,7 +43,65 @@
             label = "PAZZ";
             #binding-cells = <0>;
             bindings = <&PW1>, <&PW2>;
-        };        
+        };
+
+        gmfid_td: gmfid_td {
+            compatible = "zmk,behavior-tap-dance";
+            label = "GMFID_TD";
+            #binding-cells = <0>;
+            bindings = <&GMFID1>, <&GMFID2>;
+        };
+
+        gmid_td: gmid_td {
+            compatible = "zmk,behavior-tap-dance";
+            label = "GMID_TD";
+            #binding-cells = <0>;
+            bindings = <&GMID1>, <&GMID2>;
+        };
+
+        hold: hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD";
+            bindings = <&kp>, <&none>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <125>;
+        };
+
+        lock_ctrl: lock_ctrl {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LOCK_CTRL";
+            #binding-cells = <0>;
+            bindings = <&sk LCTRL>, <&kp LC(LA(DEL))>;
+        };
+
+        copy_paste: copy_paste {
+            compatible = "zmk,behavior-tap-dance";
+            label = "COPY_PASTE";
+            #binding-cells = <0>;
+            bindings = <&kp LC(C)>, <&kp LC(V)>;
+        };
+
+        copy_paste_mac: copy_paste_mac {
+            compatible = "zmk,behavior-tap-dance";
+            label = "COPY_PASTE_MAC";
+            #binding-cells = <0>;
+            bindings = <&kp LG(C)>, <&kp LG(V)>;
+        };
+
+        caps_to_mac: caps_to_mac {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAPS_TO_MAC";
+            #binding-cells = <0>;
+            bindings = <&kp LC(CAPS)>, <&tog 8>;
+        };
+
+        caps_to_win: caps_to_win {
+            compatible = "zmk,behavior-tap-dance";
+            label = "CAPS_TO_WIN";
+            #binding-cells = <0>;
+            bindings = <&kp LC(CAPS)>, <&tog 0>;
+        };
     };
 
     combos {
@@ -60,6 +120,36 @@
         ENT {
             bindings = <&kp ENTER>;
             key-positions = <39 40>;
+        };
+
+        scroll_tog {
+            bindings = <&mo 5>;
+            key-positions = <22 33>;
+        };
+
+        RUN {
+            bindings = <&kp RC(ENTER)>;
+            key-positions = <21 31>;
+        };
+
+        scroll_tog_2 {
+            bindings = <&mo 5>;
+            key-positions = <21 32>;
+        };
+
+        screenshot {
+            bindings = <&kp LG(LS(S))>;
+            key-positions = <52 53>;
+        };
+
+        RUN2 {
+            bindings = <&kp RC(ENTER)>;
+            key-positions = <22 32>;
+        };
+
+        scroll_tog_3 {
+            bindings = <&mo 5>;
+            key-positions = <20 31>;
         };
     };
 
@@ -175,35 +265,29 @@
             bindings = <&kp LC(LA(DEL))>;
             label = "UNLOCK";
         };
-
-        CURRENT_WINDOW: new_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LG(LA(HOME))>;
-            label = "NEW_MACRO";
-        };
     };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             label = "QWRT";
             bindings = <
-&kp ESC         &as LS(N1) N1    &as LS(N2) N2  &as LS(N3) N3  &as LS(N4) N4  &as LS(N5) N5                               &as RS(N6) N6    &as RS(N7) N7  &as RS(N8) N8        &as RS(N9) N9    &as RS(N0) N0      &kp DEL
-&kp TAB         &as LS(Q) Q      &as LS(W) W    &as LS(E) E    &as LS(R) R    &as LS(T) T                                 &as RS(Y) Y      &as RS(U) U    &as RS(I) I          &as RS(O) O      &as RS(P) P        &kp BACKSPACE
-&kp CAPS        &as LS(A) A      &as LS(S) S    &as LS(D) D    &as LS(F) F    &as LS(G) G                                 &as RS(H) H      &as RS(J) J    &as RS(K) K          &as RS(L) L      &as RS(SEMI) SEMI  &as RS(SQT) SQT
-&kp LEFT_SHIFT  &as LS(Z) Z      &as LS(X) X    &as LS(C) C    &as LS(V) V    &as LS(B) B    &kp LG(LEFT)  &kp RG(RIGHT)  &as RS(N) N      &as RS(M) M    &as RS(COMMA) COMMA  &as RS(DOT) DOT  &as RS(FSLH) FSLH  &MUTE_TEAMS
-&kp LCTRL       &kp LC(LA(DEL))  &kp LEFT_ALT   &kp LEFT_WIN   &mo 1          &mo 4          &lt 5 SPACE   &kp ENTER      &lt 2 BACKSPACE                                                       &kp RS(RG(S))      &kp RC(ENTER)
+&kp ESC          &as LS(N1) N1  &as LS(N2) N2  &as LS(N3) N3  &as LS(N4) N4  &as LS(N5) N5                                                        &as RS(N6) N6    &as RS(N7) N7  &as RS(N8) N8        &as RS(N9) N9    &as RS(N0) N0      &kp DEL
+&caps_to_mac     &as LS(Q) Q    &as LS(W) W    &as LS(E) E    &as LS(R) R    &as LS(T) T                                                          &as RS(Y) Y      &as RS(U) U    &as RS(I) I          &as RS(O) O      &as RS(P) P        &as RG(E) BACKSPACE
+&kp TAB          &as LS(A) A    &as LS(S) S    &as LS(D) D    &as LS(F) F    &as LS(G) G                                                          &as RS(H) H      &as RS(J) J    &as RS(K) K          &as RS(L) L      &as RS(SEMI) SEMI  &as RS(SQT) SQT
+&copy_paste      &as LS(Z) Z    &as LS(X) X    &as LS(C) C    &as LS(V) V    &as LS(B) B      &as LG(LEFT) LEFT_ARROW  &as RG(RIGHT) RIGHT_ARROW  &as RS(N) N      &as RS(M) M    &as RS(COMMA) COMMA  &as RS(DOT) DOT  &as RS(FSLH) FSLH  &MUTE_TEAMS
+&lock_ctrl        &kp LSHFT      &kp LEFT_ALT   &kp LEFT_WIN   &mo 7          &lt 2 BACKSPACE  &lt 1 SPACE              &kp ENTER                  &lt 2 BACKSPACE                                                       &kp UP_ARROW       &kp DOWN_ARROW
             >;
         };
 
         number_layer {
             bindings = <
-&trans  &trans    &trans  &trans   &trans  &trans                        &trans     &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp N7  &kp N8   &kp N9  &kp MINUS                     &trans     &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp N4  &kp N5   &kp N6  &kp LS(PLUS)                  &trans     &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp N1  &kp N2   &kp N3  &kp ENTER     &trans  &trans  &trans     &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp N0  &kp DOT  &trans  &trans        &trans  &trans  &trans                             &trans  &trans
+&trans  &trans  &trans  &trans   &trans  &trans                           &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N7  &kp N8   &kp N9  &kp MINUS                        &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N4  &kp N5   &kp N6  &kp LS(PLUS)                     &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N1  &kp N2   &kp N3  &kp KP_COMMA  &kp ENTER  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N0  &kp DOT  &trans  &trans        &trans     &trans  &trans                          &trans  &trans
             >;
 
             label = "NUM";
@@ -212,11 +296,11 @@
         symbol_layer {
             label = "SYM";
             bindings = <
-&trans  &trans           &trans        &trans        &trans        &trans                       &trans          &trans         &trans            &trans                &trans                 &trans
-&trans  &trans           &trans        &trans        &trans        &trans                       &trans          &trans         &trans            &trans                &trans                 &trans
-&trans  &bt BT_CLR       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans                       &kp MINUS       &kp EQUAL      &kp FSLH          &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp PIPE
-&trans  &trans           &trans        &trans        &trans        &trans       &trans  &trans  &kp UNDERSCORE  &kp PLUS       &kp BSLH          &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans
-&trans  &trans           &trans        &trans        &trans        &trans       &trans  &trans  &trans                                                                 &trans                 &trans
+&trans  &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2       &trans                                             &trans          &trans     &trans    &trans            &trans             &trans
+&trans  &trans          &kp UP_ARROW    &trans           &as LS(SEMI) SEMI  &as LS(SINGLE_QUOTE) SINGLE_QUOTE                  &trans          &trans     &trans    &trans            &trans             &trans
+&trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp COMMA          &kp PERIOD                                         &kp MINUS       &kp EQUAL  &kp FSLH  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PIPE
+&trans  &trans          &trans          &trans           &kp EXCLAMATION    &kp QUESTION                       &trans  &trans  &kp UNDERSCORE  &kp PLUS   &kp BSLH  &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
+&trans  &trans          &trans          &trans           &trans             &trans                             &trans  &trans  &trans                                                 &trans             &trans
             >;
         };
 
@@ -234,11 +318,11 @@
         mouse_layer {
             label = "MOUSE";
             bindings = <
-&trans  &trans   &trans  &trans  &trans  &trans                  &trans         &trans     &trans     &trans     &trans  &trans
-&trans  &trans   &trans  &trans  &trans  &trans                  &trans         &trans     &trans     &trans     &trans  &trans
-&trans  &trans   &trans  &trans  &trans  &trans                  &kp PAGE_UP    &mkp LCLK  &mkp RCLK  &trans     &mo 5   &trans
-&trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &kp PAGE_DOWN  &trans     &trans     &trans     &trans  &trans
-&trans  &GMFID1  &pazz   &trans  &trans  &trans  &trans  &trans  &trans                                          &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans    &trans     &trans     &trans     &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans    &trans     &mkp RCLK  &mkp RCLK  &mkp RCLK  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &kp HOME  &mkp LCLK  &mkp LCLK  &mkp LCLK  &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp END   &trans     &trans     &trans     &trans     &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans     &trans
             >;
         };
 
@@ -261,6 +345,28 @@
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                          &trans  &trans
+            >;
+        };
+
+        sign_in_layer {
+            label = "SIGN IN";
+            bindings = <
+&trans     &trans  &trans  &trans  &trans  &trans                  &trans    &trans  &trans     &trans     &trans     &trans
+&trans     &trans  &trans  &trans  &trans  &trans                  &trans    &trans  &trans     &mkp RCLK  &mkp RCLK  &trans
+&GMIN      &trans  &trans  &trans  &trans  &trans                  &kp HOME  &trans  &mkp LCLK  &mkp LCLK  &trans     &trans
+&gmid_td   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp END   &trans  &trans     &trans     &trans     &trans
+&gmfid_td  &pazz   &trans  &trans  &trans  &trans  &trans  &trans  &trans                                  &trans     &trans
+            >;
+        };
+
+        mac_layer {
+            label = "MAC";
+            bindings = <
+&kp ESC       &as LS(N1) N1  &as LS(N2) N2  &as LS(N3) N3  &as LS(N4) N4  &as LS(N5) N5                                                        &as RS(N6) N6    &as RS(N7) N7  &as RS(N8) N8        &as RS(N9) N9    &as RS(N0) N0      &kp DEL
+&caps_to_win  &as LS(Q) Q    &as LS(W) W    &as LS(E) E    &as LS(R) R    &as LS(T) T                                                          &as RS(Y) Y      &as RS(U) U    &as RS(I) I          &as RS(O) O      &as RS(P) P        &as RG(E) BACKSPACE
+&kp TAB       &as LS(A) A    &as LS(S) S    &as LS(D) D    &as LS(F) F    &as LS(G) G                                                          &as RS(H) H      &as RS(J) J    &as RS(K) K          &as RS(L) L      &as RS(SEMI) SEMI  &as RS(SQT) SQT
+&copy_paste_mac   &as LS(Z) Z    &as LS(X) X    &as LS(C) C    &as LS(V) V    &as LS(B) B      &as LG(LEFT) LEFT_ARROW  &as RG(RIGHT) RIGHT_ARROW  &as RS(N) N      &as RS(M) M    &as RS(COMMA) COMMA  &as RS(DOT) DOT  &as RS(FSLH) FSLH  &MUTE_TEAMS
+&lock_ctrl    &kp LSHFT      &kp LEFT_ALT   &kp LEFT_WIN   &mo 7          &lt 2 BACKSPACE  &lt 1 SPACE              &kp ENTER                  &lt 2 BACKSPACE                                                       &kp UP_ARROW       &kp DOWN_ARROW
             >;
         };
     };
