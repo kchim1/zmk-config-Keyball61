@@ -351,11 +351,11 @@
         sign_in_layer {
             label = "SIGN IN";
             bindings = <
-&trans     &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans                  &trans    &trans  &trans     &trans     &trans     &trans
-&trans     &trans      &trans        &trans        &trans        &trans                  &trans    &trans  &trans     &mkp RCLK  &mkp RCLK  &trans
-&GMIN      &trans      &trans        &trans        &trans        &trans                  &kp HOME  &trans  &mkp LCLK  &mkp LCLK  &trans     &trans
-&gmid_td   &trans      &trans        &trans        &trans        &trans  &trans  &trans  &kp END   &trans  &trans     &trans     &trans     &trans
-&gmfid_td  &pazz       &trans        &trans        &trans        &trans  &trans  &trans  &trans                                  &trans     &trans
+&trans          &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans                  &trans    &trans  &trans     &trans     &trans     &trans
+&studio_unlock  &trans      &trans        &trans        &trans        &trans                  &trans    &trans  &trans     &mkp RCLK  &mkp RCLK  &trans
+&GMIN           &trans      &trans        &trans        &trans        &trans                  &kp HOME  &trans  &mkp LCLK  &mkp LCLK  &trans     &trans
+&gmid_td        &trans      &trans        &trans        &trans        &trans  &trans  &trans  &kp END   &trans  &trans     &trans     &trans     &trans
+&gmfid_td       &pazz       &trans        &trans        &trans        &trans  &trans  &trans  &trans                                  &trans     &trans
             >;
         };
 
