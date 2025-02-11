@@ -34,7 +34,7 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-            quick-tap-ms = <125>;
+            quick-tap-ms = <130>;
             flavor = "tap-preferred";
         };
 
@@ -79,7 +79,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "COPY_PASTE";
             #binding-cells = <0>;
-            bindings = <&kp LC(C)>, <&kp LC(V)>;
+            bindings = <&kp LC(C)>, <&kp LC(LS(V))>;
         };
 
         copy_paste_mac: copy_paste_mac {
@@ -298,11 +298,11 @@
         symbol_layer {
             label = "SYM";
             bindings = <
-&trans  &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2       &trans                                             &trans          &trans     &trans    &trans            &trans             &trans
-&trans  &trans          &kp UP_ARROW    &trans           &as LS(SEMI) SEMI  &as LS(SINGLE_QUOTE) SINGLE_QUOTE                  &trans          &trans     &trans    &trans            &trans             &trans
-&trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp COMMA          &kp PERIOD                                         &kp MINUS       &kp EQUAL  &kp FSLH  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PIPE
-&trans  &trans          &trans          &trans           &kp EXCLAMATION    &kp QUESTION                       &trans  &trans  &kp UNDERSCORE  &kp PLUS   &kp BSLH  &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
-&trans  &trans          &trans          &trans           &trans             &trans                             &trans  &trans  &trans                                                 &trans             &trans
+&bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2     &trans             &trans                                             &trans          &trans     &trans    &trans            &trans             &trans
+&trans      &trans          &kp UP_ARROW    &trans           &as LS(SEMI) SEMI  &as LS(SINGLE_QUOTE) SINGLE_QUOTE                  &trans          &trans     &trans    &trans            &trans             &trans
+&trans      &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp COMMA          &kp PERIOD                                         &kp MINUS       &kp EQUAL  &kp FSLH  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PIPE
+&trans      &trans          &trans          &trans           &kp EXCLAMATION    &kp QUESTION                       &trans  &trans  &kp UNDERSCORE  &kp PLUS   &kp BSLH  &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans
+&trans      &trans          &trans          &trans           &trans             &trans                             &trans  &trans  &trans                                                 &trans             &trans
             >;
         };
 
