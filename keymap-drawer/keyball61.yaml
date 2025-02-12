@@ -36,7 +36,7 @@ layers:
   - {t: L, h: Sft+L}
   - {t: ;, h: Sft+;, s: ':'}
   - {t: '''', h: Sft+', s: '"'}
-  - '&copy_paste'
+  - {t: Ctl+C, h: Ctl+Sft+V}
   - {t: Z, h: Sft+Z}
   - {t: X, h: Sft+X}
   - {t: C, h: Sft+C}
@@ -49,7 +49,7 @@ layers:
   - {t: ',', h: 'Sft+,', s: <}
   - {t: ., h: Sft+., s: '>'}
   - {t: /, h: Sft+/, s: '?'}
-  - '&MUTE_TEAMS'
+  - '&mouse_mute'
   - '&lock_ctrl'
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:apple-keyboard-option$$
