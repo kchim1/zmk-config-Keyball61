@@ -59,15 +59,6 @@
             bindings = <&GMID1>, <&GMID2>;
         };
 
-        hold: hold {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOLD";
-            bindings = <&kp>, <&none>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <125>;
-        };
-
         lock_ctrl: lock_ctrl {
             compatible = "zmk,behavior-tap-dance";
             label = "LOCK_CTRL";
@@ -103,6 +94,13 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <125>;
+        };
+
+        mouse_mute: mouse_mute {
+            compatible = "zmk,behavior-tap-dance";
+            label = "MOUSE_MUTE";
+            #binding-cells = <0>;
+            bindings = <&tog 4>, <&MUTE_TEAMS>;
         };
     };
 
@@ -275,11 +273,11 @@
         default_layer {
             label = "QWRT";
             bindings = <
-&kp ESC       &as LS(N1) N1  &as LS(N2) N2  &as LS(N3) N3  &as LS(N4) N4  &as LS(N5) N5                                                        &as RS(N6) N6  &as RS(N7) N7  &as RS(N8) N8        &as RS(N9) N9    &as RS(N0) N0      &kp DEL
-&caps_to_mac  &as LS(Q) Q    &as LS(W) W    &as LS(E) E    &as LS(R) R    &as LS(T) T                                                          &as RS(Y) Y    &as RS(U) U    &as RS(I) I          &as RS(O) O      &as RS(P) P        &as RG(E) BACKSPACE
-&kp TAB       &as LS(A) A    &as LS(S) S    &as LS(D) D    &as LS(F) F    &as LS(G) G                                                          &as RS(H) H    &as RS(J) J    &as RS(K) K          &as RS(L) L      &as RS(SEMI) SEMI  &as RS(SQT) SQT
-&copy_paste   &as LS(Z) Z    &as LS(X) X    &as LS(C) C    &as LS(V) V    &as LS(B) B      &as LG(LEFT) LEFT_ARROW  &as RG(RIGHT) RIGHT_ARROW  &as RS(N) N    &as RS(M) M    &as RS(COMMA) COMMA  &as RS(DOT) DOT  &as RS(FSLH) FSLH  &MUTE_TEAMS
-&lock_ctrl    &kp LSHFT      &kp LEFT_ALT   &mo 7          &kp LEFT_WIN   &lt 2 BACKSPACE  &lt 1 SPACE              &kp ENTER                  &lt 2 BACKSPACE                                                     &kp UP_ARROW       &kp DOWN_ARROW
+&kp ESC              &as LS(N1) N1  &as LS(N2) N2  &as LS(N3) N3  &as LS(N4) N4  &as LS(N5) N5                                                        &as RS(N6) N6    &as RS(N7) N7  &as RS(N8) N8        &as RS(N9) N9    &as RS(N0) N0      &kp DEL
+&caps_to_mac         &as LS(Q) Q    &as LS(W) W    &as LS(E) E    &as LS(R) R    &as LS(T) T                                                          &as RS(Y) Y      &as RS(U) U    &as RS(I) I          &as RS(O) O      &as RS(P) P        &as RG(E) BACKSPACE
+&kp TAB              &as LS(A) A    &as LS(S) S    &as LS(D) D    &as LS(F) F    &as LS(G) G                                                          &as RS(H) H      &as RS(J) J    &as RS(K) K          &as RS(L) L      &as RS(SEMI) SEMI  &as RS(SQT) SQT
+&as LC(LS(V)) LC(C)  &as LS(Z) Z    &as LS(X) X    &as LS(C) C    &as LS(V) V    &as LS(B) B      &as LG(LEFT) LEFT_ARROW  &as RG(RIGHT) RIGHT_ARROW  &as RS(N) N      &as RS(M) M    &as RS(COMMA) COMMA  &as RS(DOT) DOT  &as RS(FSLH) FSLH  &mouse_mute
+&lock_ctrl           &kp LSHFT      &kp LEFT_ALT   &mo 7          &kp LEFT_WIN   &lt 2 BACKSPACE  &lt 1 SPACE              &kp ENTER                  &lt 2 BACKSPACE                                                       &kp UP_ARROW       &kp DOWN_ARROW
             >;
         };
 
