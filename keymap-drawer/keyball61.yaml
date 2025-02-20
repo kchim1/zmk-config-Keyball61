@@ -1,6 +1,6 @@
 layers:
   QWRT:
-  - $$mdi:keyboard-esc$$
+  - {t: '$$mdi:keyboard-return$$', h: '$$mdi:keyboard-esc$$'}
   - {t: '1', h: Sft+1, s: '!'}
   - {t: '2', h: Sft+2, s: '@'}
   - {t: '3', h: Sft+3, s: '#'}
@@ -36,7 +36,7 @@ layers:
   - {t: L, h: Sft+L}
   - {t: ;, h: Sft+;, s: ':'}
   - {t: '''', h: Sft+', s: '"'}
-  - {t: Ctl+C, h: Ctl+Sft+V}
+  - {t: Ctl+C, h: Ctl+V}
   - {t: Z, h: Sft+Z}
   - {t: X, h: Sft+X}
   - {t: C, h: Sft+C}
@@ -55,8 +55,8 @@ layers:
   - $$mdi:apple-keyboard-option$$
   - SIGN IN
   - LEFT WIN
-  - {t: '$$mdi:backspace$$', h: SYM}
-  - {t: '$$mdi:keyboard-space$$', h: NUM}
+  - {t: '$$mdi:keyboard-space$$', h: SYM}
+  - {t: '$$mdi:backspace$$', h: NUM}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', h: SYM}
   - $$mdi:arrow-up-bold$$
